@@ -1,0 +1,10 @@
+[Unit]
+Description=IPMI Fan Control
+After=multi-user.target
+
+[Service]
+type=idle
+ExecStart=/usr/bin/perl /opt/IPMIFanControl/IPMIFanControl.pl
+
+[Install]
+WantedBy=multi-user.target
