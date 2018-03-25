@@ -185,9 +185,9 @@ $hd_fan_zone  = 0;
 ## these are the fan headers which are used to verify the fan zone is high. FAN1+ are all in Zone 0, FANA is Zone 1.
 ## cpu_fan_header should be in the cpu_fan_zone
 ## hd_fan_header should be in the hd_fan_zone
-$cpu_fan_header = "FAN1";                 # used for printing to standard output for debugging   
-$hd_fan_header  = "FANA";                 # used for printing to standard output for debugging   
-@hd_fan_list = ("FANA", "FANB", "FANC");  # used for logging to file  
+$cpu_fan_header = "FANA";                 # used for printing to standard output for debugging   
+$hd_fan_header  = "FAN1";                 # used for printing to standard output for debugging   
+@hd_fan_list = ("FAN1", "FAN2", "FAN3", "FAN4");  # used for logging to file  
 
 ################
 ## MISC
@@ -909,7 +909,7 @@ sub get_cpu_temp_sysctl
 {
     # significantly more efficient to filter to dev.cpu than to just grep the whole lot!
 #    my $core_temps = `sysctl -a dev.cpu | egrep -E \"dev.cpu\.[0-9]+\.temperature\" | awk '{print \$2}' | sed 's/.\$//'`;
-    my $core_temps = `sensors | awk '/temp1/{ print int(\$2) }'`;
+    my $core_temps = `sensors | awk '/Core /{ print int(\$3) }'`;
     chomp($core_temps);
 
     dprint(3,"core_temps:\n$core_temps\n");
