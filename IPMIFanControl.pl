@@ -364,7 +364,7 @@ sub main
             {
                 foreach my $item (@hd_temps)
                 {
-                    printf(LOG "%5s", $item);
+                    printf(LOG "%7s", $item);
                 }
             }
             printf(LOG "  ^%2i", $hd_max_temp);
@@ -789,7 +789,7 @@ sub print_log_header
     {
         foreach $item (@hd_list)
         {
-            print LOG "     ";
+            print LOG "       ";
         }
     }
     
@@ -803,7 +803,7 @@ sub print_log_header
     {
         foreach $item (@hd_list)
         {
-            printf(LOG "%4s ", $item);
+            printf(LOG "%6s ", $item);
         }
     }
     
