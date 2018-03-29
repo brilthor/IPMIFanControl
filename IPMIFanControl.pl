@@ -158,8 +158,8 @@ $hd_max_fan_speed     = 3500;
 ## CPU FAN DUTY LEVELS
 ## These levels are used to control the CPU fans
 $fan_duty_high    = 100;        # percentage on, ie 100% is full speed.
-$fan_duty_med     = 60;
-$fan_duty_low     = 25;
+$fan_duty_med     = 40;
+$fan_duty_low     = 15;
 
 ## HD FAN DUTY LEVELS
 ## These levels are used to control the HD fans
@@ -222,6 +222,7 @@ $bmc_fail_threshold    = 1;     # will retry n times before rebooting
 
 # GLOBALS
 #@hd_list = ("sda", "sdb", "sdc", "sdd", "sde", "sdf", "sdg", "sdh");
+#@hd_list = ("JWHD023", "JWHD026", "JWHD028", "JWHD029", "JWHD030", "JWHD031", "JWHD051", "JWHD054", "JWHD070", "JWHD071", "JWHD076", "JWHD077", "JWHD078", "JWHD079", "JWHD082");
 @hd_list = ("sda");
 
 # massage fan speeds
@@ -420,6 +421,11 @@ sub get_hd_temps
     foreach my $item (@hd_list)
     {
         my $disk_dev = "/dev/$item";
+
+        if( $item =~ /^JWHD/ ){
+            $disk_dev = "/dev/disk/by-jwid/$item";
+        }
+
         my $command = "/usr/sbin/hddtemp -n $disk_dev";
 
         my $temp = `$command`;
