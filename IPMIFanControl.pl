@@ -378,7 +378,7 @@ sub main
             printf(LOG "%4i/%-3i", $hd_fan_duty_old, $hd_fan_duty);
             
             $cput = get_cpu_temp_sysctl();
-            printf(LOG "%4i %6.2f %6.2f  %6.2f  %6.2f%\n", $cput, $P, $I, $D, $hd_duty);
+            printf(LOG "%4i %6.2f %6.2f  %6.2f  %6.2f%   %6s\n", $cput, $P, $I, $D, $hd_duty, $cpu_fan_level);
         }
         
         # verify_fan_speed_levels function is fairly complicated
@@ -789,11 +789,11 @@ sub print_log_header
     {
         foreach $item (@hd_list)
         {
-            print LOG "       ";
+            print LOG "        ";
         }
     }
     
-    print LOG "  Max   Ave  Temp   Fan   Fan  Fan %   CPU    P      I      D      Fan\n$datestring";
+    print LOG "  Max   Ave  Temp   Fan   Fan  Fan %   CPU    P      I      D    HDFan   CPUFan\n$datestring";
     
     if ($log_temp_summary_only)
     {
@@ -807,7 +807,7 @@ sub print_log_header
         }
     }
     
-    print LOG "Temp  Temp   Err  Mode   RPM Old/New Temp  Corr   Corr   Corr    Duty\n";
+    print LOG "Temp  Temp   Err  Mode   RPM Old/New Temp  Corr   Corr   Corr    Duty    Level\n";
     
     return @hd_list;
 }
