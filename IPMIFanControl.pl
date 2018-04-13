@@ -222,7 +222,7 @@ $bmc_fail_threshold    = 1;     # will retry n times before rebooting
 
 # GLOBALS
 #@hd_list = ("sda", "sdb", "sdc", "sdd", "sde", "sdf", "sdg", "sdh");
-#@hd_list = ("JWHD023", "JWHD026", "JWHD028", "JWHD029", "JWHD030", "JWHD031", "JWHD051", "JWHD054", "JWHD070", "JWHD071", "JWHD076", "JWHD077", "JWHD078", "JWHD079", "JWHD082");
+#@hd_list = ("JWHD023", "JWHD026", "JWHD028", "JWHD029", "JWHD030", "JWHD031", "JWHD051", "JWHD070", "JWHD071", "JWHD076", "JWHD077", "JWHD078", "JWHD079", "JWHD082", "JWHD088", "JWHD089", "JWHD090");
 @hd_list = ("sda");
 
 # massage fan speeds
@@ -378,7 +378,7 @@ sub main
             printf(LOG "%4i/%-3i", $hd_fan_duty_old, $hd_fan_duty);
             
             $cput = get_cpu_temp_sysctl();
-            printf(LOG "%4i %6.2f %6.2f  %6.2f  %6.2f%   %6s\n", $cput, $P, $I, $D, $hd_duty, $cpu_fan_level);
+            printf(LOG "%4i %6.2f %6.2f  %6.2f  %6.2f  %6s\n", $cput, $P, $I, $D, $hd_duty, $cpu_fan_level);
         }
         
         # verify_fan_speed_levels function is fairly complicated
